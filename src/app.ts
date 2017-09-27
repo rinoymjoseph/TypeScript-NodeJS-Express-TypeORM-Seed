@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as bodyParser from "body-parser";
 
 /**
  * Controllers (route handlers).
@@ -9,7 +10,8 @@ import * as empController from "./controllers/employee-controller";
  * Create Express server.
  */
 const app = express();
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 /**
  * Express configuration.
  */
@@ -27,5 +29,6 @@ app.listen(app.get("port"), () => {
  * Primary app routes.
  */
 app.get("/GetAllEmployees", empController.getAllEmployees);
+app.post("/SaveEmployee", empController.saveEmployee);
 
 module.exports = app;

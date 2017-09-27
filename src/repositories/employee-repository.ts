@@ -6,14 +6,26 @@ import { EmployeeEntity } from "../entities/employee-entity";
 export class EmployeeRepo {
 
     getAllEmployees() {
-       return createConnection(
+        return createConnection(
             appConfig.dbOptions
         ).then(async connection => {
-            // Here you can start to work with your entities
             let emps = await connection.manager.find(EmployeeEntity);
             console.log("All Employees from the db: ", emps);
+            connection.close();
             return emps;
         }).catch(error => console.log(error));
+    }
+
+    saveEmployee(employee: EmployeeEntity) {
+        return createConnection(
+            appConfig.dbOptions
+        ).then(async connection => {
+            let result = await connection.manager.save(employee);
+            console.log("Result ", result);
+            connection.close();
+            return result;
+        }).catch(error => console.log(error));
+
     }
 
 }

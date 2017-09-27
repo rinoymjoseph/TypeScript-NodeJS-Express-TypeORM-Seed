@@ -15,10 +15,18 @@ const employee_entity_1 = require("../entities/employee-entity");
 class EmployeeRepo {
     getAllEmployees() {
         return typeorm_1.createConnection(appConfig.dbOptions).then((connection) => __awaiter(this, void 0, void 0, function* () {
-            // Here you can start to work with your entities
             let emps = yield connection.manager.find(employee_entity_1.EmployeeEntity);
             console.log("All Employees from the db: ", emps);
+            connection.close();
             return emps;
+        })).catch(error => console.log(error));
+    }
+    saveEmployee(employee) {
+        return typeorm_1.createConnection(appConfig.dbOptions).then((connection) => __awaiter(this, void 0, void 0, function* () {
+            let result = yield connection.manager.save(employee);
+            console.log("Result ", result);
+            connection.close();
+            return result;
         })).catch(error => console.log(error));
     }
 }

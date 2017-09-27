@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+const bodyParser = require("body-parser");
 /**
  * Controllers (route handlers).
  */
@@ -9,6 +10,8 @@ const empController = require("./controllers/employee-controller");
  * Create Express server.
  */
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 /**
  * Express configuration.
  */
@@ -24,5 +27,6 @@ app.listen(app.get("port"), () => {
  * Primary app routes.
  */
 app.get("/GetAllEmployees", empController.getAllEmployees);
+app.post("/SaveEmployee", empController.saveEmployee);
 module.exports = app;
 //# sourceMappingURL=app.js.map

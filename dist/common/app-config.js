@@ -7,10 +7,10 @@ exports.dbOptions = {
     port: 3306,
     username: "root",
     password: "beta",
-    database: "hivestore",
+    database: "hivetestdb",
     entities: [
         "./entities/*.js"
     ],
-    autoSchemaSync: false,
+    autoSchemaSync: true,
 };
 //# sourceMappingURL=app-config.js.map
