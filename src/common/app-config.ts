@@ -11,5 +11,5 @@ import {ConnectionOptions} from "typeorm";
     entities: [
          "./entities/*.js"
     ],
-    autoSchemaSync: true,
+    synchronize: true,
 }

@@ -11,6 +11,6 @@ exports.dbOptions = {
     entities: [
         "./entities/*.js"
     ],
-    autoSchemaSync: true,
+    synchronize: true,
 };
 //# sourceMappingURL=app-config.js.map
